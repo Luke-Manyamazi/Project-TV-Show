@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  background: linear-gradient(to right, #706b6b, #ada59f);
 }
 
 #hero-image {
@@ -23,6 +24,7 @@ section {
   padding: 16px;
   width: 200px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #c5c2c1;
 }
 
 section img {
@@ -32,6 +34,8 @@ section img {
 
 h3 {
   margin-top: 0;
+  color: rgb(87, 81, 81);
+
 }
 
 p,
