@@ -18,12 +18,14 @@ function createEpisodeCard(episode) {
   const template = document.getElementById("episode-card");
   const card = template.content.cloneNode(true);
 
+  const episodeCode = `S${String(episode.season).padStart(2, "0")}E${String(
+    episode.number
+  ).padStart(2, "0")}`;
+
   card.querySelector("[data-image]").src = episode.image.medium;
-  card.querySelector("[data-title]").textContent = episode.name;
-  card.querySelector("[data-season]").textContent = `Season: ${episode.season}`;
   card.querySelector(
-    "[data-episode]"
-  ).textContent = `Episode: ${episode.number}`;
+    "[data-title]"
+  ).textContent = `${episodeCode} - ${episode.name}`;
   card.querySelector(
     "[data-airdate]"
   ).textContent = `Airdate: ${episode.airdate}`;
