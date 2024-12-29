@@ -1,14 +1,45 @@
-#root {
-  color: red;
-}
-
 body {
-  width: 100%;
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-
+  overflow-x: hidden;
 }
 
-.header-image {
+#hero-image {
   text-align: center;
+}
+
+#root {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+}
+
+section {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  width: 200px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+section img {
+  width: 200px;
+  border-radius: 8px;
+}
+
+h3 {
+  margin-top: 0;
+}
+
+p,
+time {
+  margin: 8px 0;
+}
+
+data {
+  display: block;
+  margin: 8px 0;
 }
