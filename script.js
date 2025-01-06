@@ -1,6 +1,7 @@
-//You can edit ALL of the code here
+//You can edit ALL of the code here'
+const allEpisodes = getAllEpisodes();
+
 function setup() {
-  const allEpisodes = getAllEpisodes();
   makePageForEpisodes(allEpisodes);
 }
 
@@ -40,5 +41,31 @@ function createEpisodeCard(episode) {
 
   return card;
 }
+
+//search functionality
+const searchBox = document.getElementById("search-box");
+let searchFunction = searchBox.addEventListener("keyup", function () {
+
+  //clear the sections.
+  document.querySelector("section").innerHTML = "";
+
+  //user input is the value of the search input box
+  let userInput = searchBox.value;
+  console.log(userInput);
+
+  let filteredItems = allEpisodes.filter(function (episodes) {
+    return episodes.name.toLowerCase().includes(userInput.toLowerCase()) || episodes.summary.toLowerCase().includes(userInput.toLowerCase());
+  });
+
+  makePageForEpisodes(filteredItems);
+  let count = document.querySelectorAll("section").length;
+  if (userInput.length > 0) {
+    document.getElementById("current-search").innerHTML = `Episodes that match: ${count}/${allEpisodes.length}`;
+  }
+  else {
+    document.getElementById("current-search").innerHTML = "";
+  }
+});
+
 
 window.onload = setup;
