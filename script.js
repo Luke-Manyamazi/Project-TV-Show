@@ -39,6 +39,7 @@ function createEpisodeCard(episode) {
   card.querySelector("[data-summary]").innerHTML = episode.summary;
   card.querySelector("[data-url]").href = episode.url;
 
+
   return card;
 }
 
@@ -67,5 +68,29 @@ let searchFunction = searchBox.addEventListener("keyup", function () {
   }
 });
 
+//selector functionality
+
+const selector = document.getElementById("episode-selector");
+
+for (const option of allEpisodes) {
+  let newOption = document.createElement("option");
+  newOption.value = `S${(option.season).toString().padStart(2, "0")}E${(option.number).toString().padStart(2, "0")}`;
+  newOption.textContent = `S${(option.season).toString().padStart(2, "0")}E${(option.number).toString().padStart(2, "0")} - ${option.name}`;
+  selector.appendChild(newOption);
+}
+
+//change is the appropriate event in this case to listen to for select
+selector.addEventListener("change", function () {
+  for (const episode of allEpisodes) {
+    document.querySelector("section").id = `S${(episode.season).toString().padStart(2, "0")}E${(episode.number).toString().padStart(2, "0")}`;
+    if (selector.value === document.querySelector("section").id) {
+      document.querySelector("section").scrollIntoView();
+    }
+
+  }
+
+
+}
+);
 
 window.onload = setup;
