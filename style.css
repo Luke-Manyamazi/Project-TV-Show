@@ -23,6 +23,10 @@ label {
   outline: none;
   font-size: 1.6em;
 }
+#episode-selector {
+  font-size: 1.6em;
+  margin: 5px;
+}
 #root {
   display: flex;
   flex-wrap: wrap;
