@@ -3,7 +3,9 @@ const allEpisodes = getAllEpisodes();
 
 function setup() {
   makePageForEpisodes(allEpisodes);
-
+  setupSearch();
+  setupSelector();
+  setupClearSelection();
 }
 
 function makePageForEpisodes(episodeList) {
@@ -14,16 +16,6 @@ function makePageForEpisodes(episodeList) {
     const episodeCard = createEpisodeCard(episode);
     rootElem.appendChild(episodeCard);
   });
-
-  //add ids to each section so that we can point to that location
-  const sections = document.querySelectorAll("section"); //select all the section cards
-  let i = 0;
-  for (const section of sections) {
-    const episode = allEpisodes[i];
-    const episodeCode = `S${episode.season.toString().padStart(2, "0")}E${episode.number.toString().padStart(2, "0")}`;
-    section.id = episodeCode;
-    i++;
-  }
 }
 
 function createEpisodeCard(episode) {
@@ -50,55 +42,69 @@ function createEpisodeCard(episode) {
   card.querySelector("[data-summary]").innerHTML = episode.summary;
   card.querySelector("[data-url]").href = episode.url;
 
-
   return card;
 }
 
-//search functionality
-const searchBox = document.getElementById("search-box");
-let searchFunction = searchBox.addEventListener("keyup", function () {
+function setupSearch() {
+  const searchBox = document.getElementById("search-box");
+  searchBox.addEventListener("keyup", function () {
+    const userInput = searchBox.value.toLowerCase();
+    const filteredItems = allEpisodes.filter(
+      (episode) =>
+        episode.name.toLowerCase().includes(userInput) ||
+        episode.summary.toLowerCase().includes(userInput)
+    );
+    makePageForEpisodes(filteredItems);
+    const count = filteredItems.length;
+    document.getElementById("current-search").textContent =
+      userInput.length > 0
+        ? `Episodes that match: ${count}/${allEpisodes.length}`
+        : "";
+  });
+}
 
-  //clear the sections.
-  document.querySelector("section").innerHTML = "";
+function setupSelector() {
+  const selector = document.getElementById("episode-selector");
 
-  //user input is the value of the search input box
-  let userInput = searchBox.value;
-  console.log(userInput);
+  // Add default option
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.textContent = "Select an episode";
+  selector.appendChild(defaultOption);
 
-  let filteredItems = allEpisodes.filter(function (episodes) {
-    return episodes.name.toLowerCase().includes(userInput.toLowerCase()) || episodes.summary.toLowerCase().includes(userInput.toLowerCase());
+  allEpisodes.forEach((episode) => {
+    const episodeCode = `S${String(episode.season).padStart(2, "0")}E${String(
+      episode.number
+    ).padStart(2, "0")}`;
+    const option = document.createElement("option");
+    option.value = episodeCode;
+    option.textContent = `${episodeCode} - ${episode.name}`;
+    selector.appendChild(option);
   });
 
-  makePageForEpisodes(filteredItems);
-  let count = document.querySelectorAll("section").length;
-  if (userInput.length > 0) {
-    document.getElementById("current-search").innerHTML = `Episodes that match: ${count}/${allEpisodes.length}`;
-  }
-  else {
-    document.getElementById("current-search").innerHTML = "";
-  }
-});
-
-//selector functionality
-
-const selector = document.getElementById("episode-selector");
-
-for (const option of allEpisodes) {
-  let newOption = document.createElement("option");
-  newOption.value = `S${(option.season).toString().padStart(2, "0")}E${(option.number).toString().padStart(2, "0")}`;
-  newOption.textContent = `S${(option.season).toString().padStart(2, "0")}E${(option.number).toString().padStart(2, "0")} - ${option.name}`;
-  selector.appendChild(newOption);
+  selector.addEventListener("change", function () {
+    const selectedValue = selector.value;
+    if (selectedValue === "") {
+      makePageForEpisodes(allEpisodes); // Show all episodes
+    } else {
+      const selectedEpisode = allEpisodes.find((episode) => {
+        const episodeCode = `S${String(episode.season).padStart(
+          2,
+          "0"
+        )}E${String(episode.number).padStart(2, "0")}`;
+        return episodeCode === selectedValue;
+      });
+      makePageForEpisodes([selectedEpisode]); // Show only the selected episode
+    }
+  });
 }
 
-//change is the appropriate event in this case to listen to for the select element
-selector.addEventListener("change", function () {
-  const currentLocation = document.getElementById(selector.value);
-  if (currentLocation) {
-    currentLocation.scrollIntoView();
-
-  }
-
+function setupClearSelection() {
+  const clearButton = document.getElementById("clear-selection");
+  clearButton.addEventListener("click", function () {
+    document.getElementById("episode-selector").value = "";
+    makePageForEpisodes(allEpisodes); // Show all episodes
+  });
 }
-);
 
 window.onload = setup;
