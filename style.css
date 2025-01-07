@@ -9,7 +9,24 @@ body {
 #hero-image {
   text-align: center;
 }
-
+.search-bar {
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid white;
+}
+label {
+  font-size: 1.6em;
+}
+#search-box {
+  margin: 15px;
+  border: none;
+  outline: none;
+  font-size: 1.6em;
+}
+#episode-selector {
+  font-size: 1.6em;
+  margin: 5px;
+}
 #root {
   display: flex;
   flex-wrap: wrap;
@@ -35,7 +52,6 @@ section img {
 h3 {
   margin-top: 0;
   color: rgb(87, 81, 81);
-
 }
 
 p,
