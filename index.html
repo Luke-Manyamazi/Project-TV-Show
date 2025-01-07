@@ -11,14 +11,14 @@
   <body>
     <div id="hero-image">
       <img src="./GOT.png" alt="Game of Thrones image" />
-    </div>
-    <div class="search-bar">
-      <label for="search-box">Search : </label>
-      <input type="text" id="search-box" placeholder="Search an episode" />
+      <div class="search-bar">
+        <label for="search-box">Search : </label>
+        <input type="text" id="search-box" />
+        <select name="select-episode" id="episode-selector"></select>
+      </div>
       <label for="" id="current-search"></label>
-      <select name="select-episode" id="episode-selector"></select>
     </div>
-    
+
     <div id="root"></div>
     <template id="episode-card">
       <section>
