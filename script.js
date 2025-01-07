@@ -3,6 +3,7 @@ const allEpisodes = getAllEpisodes();
 
 function setup() {
   makePageForEpisodes(allEpisodes);
+
 }
 
 function makePageForEpisodes(episodeList) {
@@ -13,6 +14,16 @@ function makePageForEpisodes(episodeList) {
     const episodeCard = createEpisodeCard(episode);
     rootElem.appendChild(episodeCard);
   });
+
+  //add ids to each section so that we can point to that location
+  const sections = document.querySelectorAll("section"); //select all the section cards
+  let i = 0;
+  for (const section of sections) {
+    const episode = allEpisodes[i];
+    const episodeCode = `S${episode.season.toString().padStart(2, "0")}E${episode.number.toString().padStart(2, "0")}`;
+    section.id = episodeCode;
+    i++;
+  }
 }
 
 function createEpisodeCard(episode) {
@@ -79,16 +90,13 @@ for (const option of allEpisodes) {
   selector.appendChild(newOption);
 }
 
-//change is the appropriate event in this case to listen to for select
+//change is the appropriate event in this case to listen to for the select element
 selector.addEventListener("change", function () {
-  for (const episode of allEpisodes) {
-    document.querySelector("section").id = `S${(episode.season).toString().padStart(2, "0")}E${(episode.number).toString().padStart(2, "0")}`;
-    if (selector.value === document.querySelector("section").id) {
-      document.querySelector("section").scrollIntoView();
-    }
+  const currentLocation = document.getElementById(selector.value);
+  if (currentLocation) {
+    currentLocation.scrollIntoView();
 
   }
-
 
 }
 );
