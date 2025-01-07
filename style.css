@@ -110,3 +110,9 @@ footer a {
   color: #fff;
   text-decoration: underline;
 }
+
+.error {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+}

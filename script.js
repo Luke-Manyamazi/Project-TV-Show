@@ -1,11 +1,19 @@
-//You can edit ALL of the code here'
-const allEpisodes = getAllEpisodes();
+let allEpisodes = [];
 
-function setup() {
-  makePageForEpisodes(allEpisodes);
-  setupSearch();
-  setupSelector();
-  setupClearSelection();
+async function setup() {
+  try {
+    const response = await fetch("https://api.tvmaze.com/shows/82/episodes");
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    allEpisodes = await response.json();
+    makePageForEpisodes(allEpisodes);
+    setupSearch();
+    setupSelector();
+    setupClearSelection();
+  } catch (error) {
+    displayError(error);
+  }
 }
 
 function makePageForEpisodes(episodeList) {
@@ -105,6 +113,10 @@ function setupClearSelection() {
     document.getElementById("episode-selector").value = "";
     makePageForEpisodes(allEpisodes); // Show all episodes
   });
+}
+
+function displayError(error) {
+  alert(`Error: ${error.message}`);
 }
 
 window.onload = setup;
