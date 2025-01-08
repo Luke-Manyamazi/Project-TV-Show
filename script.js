@@ -1,14 +1,11 @@
 let allEpisodes = [];
 let allTVShows = [];
+let showID = 82;
 
 async function setup() {
   try {
-    const response = await fetch("https://api.tvmaze.com/shows/82/episodes");
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    allEpisodes = await response.json();
-    fetchTVShows();
+    await fetchTVShows();
+    await fetchEpisodes(showID);
     makePageForEpisodes(allEpisodes);
     setupSearch();
     setupSelector();
@@ -30,6 +27,18 @@ async function fetchTVShows() {
 
 }
 
+async function fetchEpisodes(showID) {
+  try {
+    const response = await fetch(`https://api.tvmaze.com/shows/${showID}/episodes`);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    allEpisodes = await response.json();
+    makePageForEpisodes(allEpisodes);
+  } catch (error) {
+    displayError(error);
+  }
+}
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
   rootElem.innerHTML = ""; // Clear any existing content
@@ -138,18 +147,17 @@ function setupTVShowSelector() {
     tvSelector.appendChild(tvOption);
   });
 
-  // tvSelector.addEventListener("change", function () {
-  //   const selectedValue = tvSelector.value;
-  //   if (selectedValue === "") {
-  //     makePageForEpisodes(allTVShows); // Show all episodes
-  //   } else {
-  //     const selectedTVShow = allTVShows.find((tvShow) => {
+  tvSelector.addEventListener("change", async function () {
+    const selectedValue = tvSelector.value;
+    if (selectedValue === "") {
+      makePageForEpisodes(allEpisodes); // Show all episodes
+    } else {
 
-  //       return tvShow.id === selectedValue;
-  //     });
-  //     makePageForEpisodes(); // Show only the selected episode
-  //   }
-  // });
+      showID = parseInt(selectedValue);
+      await fetchEpisodes(showID);
+
+    }
+  });
 }
 
 function setupClearSelection() {
