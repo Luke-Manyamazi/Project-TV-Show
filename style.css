@@ -10,6 +10,58 @@ body {
   text-align: center;
 }
 
+.search-select {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+  gap: 10px;
+}
+
+label {
+  font-size: 1em;
+}
+
+#search-box {
+  margin: 15px;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  padding: 10px;
+  border-radius: 5px;
+  width: 130px;
+  height: 20px;
+}
+
+#clear-selection {
+  margin: 15px;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  padding: 10px;
+  border-radius: 5px;
+  width: 130px;
+  height: 40px;
+  cursor: pointer;
+}
+
+#clear-selection:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+
+#episode-selector {
+  font-size: 1em;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  width: 260px;
+  height: 40px;
+}
+
 #root {
   display: flex;
   flex-wrap: wrap;
@@ -35,7 +87,6 @@ section img {
 h3 {
   margin-top: 0;
   color: rgb(87, 81, 81);
-
 }
 
 p,
@@ -58,4 +109,10 @@ footer {
 footer a {
   color: #fff;
   text-decoration: underline;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  text-align: center;
 }

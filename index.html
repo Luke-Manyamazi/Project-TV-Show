@@ -12,13 +12,17 @@
     <div id="hero-image">
       <img src="./GOT.png" alt="Game of Thrones image" />
     </div>
-    <div id="root"></div>
-    <footer>
-      <p>
-        Data originally from
-        <a href="https://www.tvmaze.com/" target="_blank">TVMaze.com</a>
-      </p>
-    </footer>
+    <div class="search-select">
+      <label for="search-box">Search : </label>
+      <input type="text" id="search-box" />
+      <label for="search-box" id="current-search"></label>
+      <select name="select-episode" id="episode-selector"></select>
+      <button id="clear-selection">Clear Selection</button>
+    </div>
+
+    <div id="root">
+      <p>Loading episodes, please wait...</p>
+    </div>
     <template id="episode-card">
       <section>
         <img data-image src="" alt="Episode Image" />
@@ -37,4 +41,10 @@
     <!-- Loads YOUR javascript code -->
     <script src="script.js"></script>
   </body>
+  <footer>
+    <p>
+      Data originally from
+      <a href="https://www.tvmaze.com/" target="_blank">TVMaze.com</a>
+    </p>
+  </footer>
 </html>
