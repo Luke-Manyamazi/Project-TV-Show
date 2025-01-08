@@ -1,21 +1,45 @@
 let allEpisodes = [];
+let allTVShows = [];
+let showID = 82;
 
 async function setup() {
   try {
-    const response = await fetch("https://api.tvmaze.com/shows/82/episodes");
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    allEpisodes = await response.json();
+    await fetchTVShows();
+    await fetchEpisodes(showID);
     makePageForEpisodes(allEpisodes);
     setupSearch();
     setupSelector();
     setupClearSelection();
+
   } catch (error) {
     displayError(error);
   }
 }
 
+async function fetchTVShows() {
+  try {
+    const response = await fetch("https://api.tvmaze.com/shows");
+    allTVShows = await response.json();
+    setupTVShowSelector();
+  } catch (error) {
+    displayError(error);
+  }
+
+}
+
+async function fetchEpisodes(showID) {
+  try {
+    const response = await fetch(`https://api.tvmaze.com/shows/${showID}/episodes`);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    allEpisodes = await response.json();
+    makePageForEpisodes(allEpisodes);
+    setupSelector();
+  } catch (error) {
+    displayError(error);
+  }
+}
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
   rootElem.innerHTML = ""; // Clear any existing content
@@ -73,7 +97,7 @@ function setupSearch() {
 
 function setupSelector() {
   const selector = document.getElementById("episode-selector");
-
+  selector.innerHTML = "";
   // Add default option
   const defaultOption = document.createElement("option");
   defaultOption.value = "";
@@ -103,6 +127,38 @@ function setupSelector() {
         return episodeCode === selectedValue;
       });
       makePageForEpisodes([selectedEpisode]); // Show only the selected episode
+    }
+  });
+}
+
+
+function setupTVShowSelector() {
+  const tvSelector = document.getElementById("tv-show-selector");
+
+  // Add default option
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.textContent = "Select a TV Show";
+  tvSelector.appendChild(defaultOption);
+
+  allTVShows.sort((a, b) => a.name.localeCompare(b.name));
+
+  allTVShows.forEach((tvShow) => {
+    const tvOption = document.createElement("option");
+    tvOption.value = tvShow.id;
+    tvOption.textContent = `${tvShow.name}`;
+    tvSelector.appendChild(tvOption);
+  });
+
+  tvSelector.addEventListener("change", async function () {
+    const selectedValue = tvSelector.value;
+    if (selectedValue === "") {
+      makePageForEpisodes(allEpisodes); // Show all episodes
+    } else {
+
+      showID = parseInt(selectedValue);
+      await fetchEpisodes(showID);
+
     }
   });
 }
