@@ -35,6 +35,7 @@ async function fetchEpisodes(showID) {
     }
     allEpisodes = await response.json();
     makePageForEpisodes(allEpisodes);
+    setupSelector();
   } catch (error) {
     displayError(error);
   }
@@ -96,7 +97,7 @@ function setupSearch() {
 
 function setupSelector() {
   const selector = document.getElementById("episode-selector");
-
+  selector.innerHTML = "";
   // Add default option
   const defaultOption = document.createElement("option");
   defaultOption.value = "";
