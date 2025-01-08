@@ -141,6 +141,8 @@ function setupTVShowSelector() {
   defaultOption.textContent = "Select a TV Show";
   tvSelector.appendChild(defaultOption);
 
+  allTVShows.sort((a, b) => a.name.localeCompare(b.name));
+
   allTVShows.forEach((tvShow) => {
     const tvOption = document.createElement("option");
     tvOption.value = tvShow.id;
