@@ -1,6 +1,7 @@
 let allTVShows = [];
 let currentPage = 1;
 const showsPerPage = 16; // 2 rows * 8 columns
+const showCache = {};
 
 async function setup() {
   try {
@@ -17,6 +18,10 @@ async function fetchTVShows() {
   if (allTVShows.length > 0) {
     return; // Shows already fetched
   }
+  if (showCache["allShows"]) {
+    allTVShows = showCache["allShows"];
+    return;
+  }
   const response = await fetch("https://api.tvmaze.com/shows");
   if (!response.ok) {
     throw new Error("Network response was not ok");
@@ -25,6 +30,7 @@ async function fetchTVShows() {
   allTVShows.sort((a, b) =>
     a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
   );
+  showCache["allShows"] = allTVShows; // Cache the shows
 }
 
 function displayShowsListing() {
@@ -102,12 +108,6 @@ function displayFilteredShows(filteredShows) {
   updatePageInfo(filteredShows.length);
 }
 
-function updatePageInfo(totalShows) {
-  const pageInfo = document.getElementById("page-info");
-  const totalPages = Math.ceil(totalShows / showsPerPage);
-  pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
-}
-
 function setupPagination() {
   document.getElementById("prev-page").addEventListener("click", () => {
     if (currentPage > 1) {
@@ -124,9 +124,9 @@ function setupPagination() {
   });
 }
 
-function updatePageInfo() {
+function updatePageInfo(totalShows = allTVShows.length) {
   const pageInfo = document.getElementById("page-info");
-  const totalPages = Math.ceil(allTVShows.length / showsPerPage);
+  const totalPages = Math.ceil(totalShows / showsPerPage);
   pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
 }
 
