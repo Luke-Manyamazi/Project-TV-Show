@@ -14,12 +14,22 @@ body {
 
 }
 
+nav a {
+  color: white;
+  text-decoration: none;
+  background-color: grey;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
 h1 {
   font-size: 72px;
 }
 
 #hero-tag {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: light;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -102,11 +112,13 @@ section img {
 h3 {
   margin-top: 0;
   color: rgb(87, 81, 81);
+  font-size: 14px;
 }
 
 p,
 time {
   margin: 8px 0;
+  font-size: 12px;
 }
 
 data {

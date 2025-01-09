@@ -1,6 +1,6 @@
 let allEpisodes = [];
 let allTVShows = [];
-let showID = 82;
+let showID = new URLSearchParams(window.location.search).get("showID") || 82;
 const episodeCache = {};
 
 async function setup() {
@@ -89,7 +89,6 @@ function createEpisodeCard(episode) {
     "[data-runtime]"
   ).textContent = `Runtime: ${episode.runtime} minutes`;
   card.querySelector("[data-summary]").innerHTML = episode.summary;
-  card.querySelector("[data-url]").href = episode.url;
 
   return card;
 }
