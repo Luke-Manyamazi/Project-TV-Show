@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luke Manyamazi | Luke-Manyamazi</title>
+    <link href="episodes-style.css" rel="stylesheet" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  </head>
+
+  <body>
+    <div id="hero">
+      <h1 id="hero-text">Luke's TV Show Explorer</h1>
+      <p id="hero-tag">
+        Find and explore your favorite TV shows and episodes effortlessly.
+      </p>
+      <br />
+      <nav id="hero-nav">
+        <a href="index.html">Explore All TV Shows</a>
+      </nav>
+    </div>
+    <div class="search-select">
+      <label for="search-box">Search : </label>
+      <input type="text" id="search-box" />
+      <label for="search-box" id="current-search"></label>
+      <select name="select-episode" id="episode-selector"></select>
+      <button id="clear-selection">Clear Selection</button>
+      <select name="select-show" id="tv-show-selector"></select>
+    </div>
+
+    <div id="root">
+      <p>Loading episodes, please wait...</p>
+    </div>
+    <template id="episode-card">
+      <section>
+        <img data-image src="" alt="Episode Image" />
+        <h3 data-title>Episode Title</h3>
+        <p data-airdate>Airdate:</p>
+        <p data-airtime>Airtime:</p>
+        <p data-runtime>Runtime:</p>
+        <p data-summary>Summary:</p>
+      </section>
+    </template>
+
+    <!-- Loads YOUR javascript code -->
+    <script src="episodes-script.js"></script>
+  </body>
+  <footer>
+    <p>
+      Data originally from
+      <a href="https://www.tvmaze.com/" target="_blank">TVMaze.com</a>
+    </p>
+  </footer>
+</html>
