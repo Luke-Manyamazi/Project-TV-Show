@@ -6,6 +6,7 @@ body {
     background: linear-gradient(to right, #a29f9f, #ada59f);
 }
 
+/* Hero Section */
 #hero {
     text-align: center;
     background-color: #333;
@@ -14,21 +15,27 @@ body {
 }
 
 h1 {
-    font-size: 72px;
+    font-size: 60px;
 }
 
-#hero-tag {
-    font-size: 20px;
-    font-weight: light;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* Adjust hero text on smaller screens */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 36px;
+    }
+
+    #hero-tag {
+        font-size: 18px;
+    }
 }
 
+/* Search Bar */
 .search-select {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 15px;
     text-align: center;
     gap: 10px;
     background-color: #706b6b;
@@ -39,23 +46,26 @@ label {
 }
 
 #show-search-box {
-    margin: 15px;
+    margin: 10px;
     border: none;
     outline: none;
     font-size: 1em;
     padding: 10px;
-    height: 25px;
-    width: 200px;
+    height: 30px;
+    width: 100%;
+    max-width: 250px;
 }
 
+/* Show Listings */
 #shows-listing {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 20px;
-    padding: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 15px;
     justify-content: center;
 }
 
+/* Cards */
 section {
     position: relative;
     border: 1px solid #ccc;
@@ -64,24 +74,35 @@ section {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-color: #c5c2c1;
     transition: transform 0.3s, z-index 0.3s;
-    width: 80%;
+    width: 100%;
+    max-width: 300px;
     overflow: hidden;
 }
 
 section:hover {
-    transform: scale(1.2);
+    transform: scale(1.05);
     z-index: 10;
 }
 
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    section {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+/* Card Content */
 .card-content {
     position: relative;
 }
 
 section img {
     width: 100%;
-
+    height: auto;
 }
 
+/* Details Section */
 .details {
     display: none;
     position: absolute;
@@ -98,23 +119,25 @@ section:hover .details {
     display: block;
 }
 
+/* Typography Adjustments */
 h3 {
     margin-top: 0;
     color: rgb(237, 232, 232);
-    font-size: 14px;
+    font-size: 16px;
 }
 
 p,
 time {
     margin: 8px 0;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 section>h3 {
-    font-size: 12px;
+    font-size: 14px;
     color: #cfc8c8;
 }
 
+/* Footer */
 footer {
     text-align: center;
     padding: 10px;
@@ -127,25 +150,28 @@ footer a {
     text-decoration: underline;
 }
 
+/* Error Messages */
 .error {
     color: red;
     font-weight: bold;
     text-align: center;
 }
 
+/* Pagination */
 .pagination {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 20px 0;
+    flex-wrap: wrap;
 }
 
 .pagination button {
     background-color: #333;
     color: #fff;
     border: none;
-    padding: 10px 20px;
-    margin: 0 10px;
+    padding: 10px 15px;
+    margin: 5px;
     cursor: pointer;
     border-radius: 5px;
 }
@@ -155,5 +181,5 @@ footer a {
 }
 
 .pagination span {
-    font-size: 1.2em;
+    font-size: 1em;
 }
