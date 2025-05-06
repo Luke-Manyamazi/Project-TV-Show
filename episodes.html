@@ -19,18 +19,37 @@
         <a href="index.html">Explore All TV Shows</a>
       </nav>
     </div>
-    <div class="search-select">
-      <label for="search-box">Search : </label>
-      <input type="text" id="search-box" />
-      <label for="search-box" id="current-search"></label>
-      <select name="select-episode" id="episode-selector"></select>
-      <button id="clear-selection">Clear Selection</button>
-      <select name="select-show" id="tv-show-selector"></select>
-    </div>
 
-    <div id="root">
-      <p>Loading episodes, please wait...</p>
-    </div>
+    <main>
+      <div class="search-select">
+        <label for="search-box">Search: </label>
+        <input
+          type="text"
+          id="search-box"
+          aria-label="Search for episodes or shows"
+        />
+        <span id="current-search"></span>
+
+        <select
+          name="select-episode"
+          id="episode-selector"
+          aria-label="Select episode"
+        ></select>
+
+        <button id="clear-selection">Clear Selection</button>
+
+        <select
+          name="select-show"
+          id="tv-show-selector"
+          aria-label="Select show"
+        ></select>
+      </div>
+
+      <div id="root">
+        <p>Loading episodes, please wait...</p>
+      </div>
+    </main>
+
     <template id="episode-card">
       <section>
         <img data-image src="" alt="Episode Image" />
@@ -44,11 +63,12 @@
 
     <!-- Loads YOUR javascript code -->
     <script src="episodes-script.js"></script>
+
+    <footer>
+      <p>
+        Data originally from
+        <a href="https://www.tvmaze.com/" target="_blank">TVMaze.com</a>
+      </p>
+    </footer>
   </body>
-  <footer>
-    <p>
-      Data originally from
-      <a href="https://www.tvmaze.com/" target="_blank">TVMaze.com</a>
-    </p>
-  </footer>
 </html>
