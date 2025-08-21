@@ -1,3 +1,4 @@
+/* Base Styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -6,70 +7,80 @@ body {
   background: linear-gradient(to right, #a29f9f, #ada59f);
 }
 
+/* Hero Section */
 #hero {
   text-align: center;
   background-color: #333;
   padding: 20px;
   color: #fff;
+}
 
+h1 {
+  font-size: 60px;
+  margin: 0;
+}
+
+#hero-tag {
+  margin: 10px 0 0;
+  font-size: 18px;
+}
+
+/* Navigation */
+nav {
+  text-align: center;
+  padding: 10px;
+  background-color: #444;
 }
 
 nav a {
   color: white;
   text-decoration: none;
   background-color: grey;
-  padding: 10px;
+  padding: 10px 15px;
   font-size: 14px;
   border-radius: 5px;
   font-weight: bold;
+  display: inline-block;
+  transition: background-color 0.3s ease;
 }
 
-h1 {
-  font-size: 72px;
+nav a:hover {
+  background-color: #222;
 }
 
-#hero-tag {
-  font-size: 18px;
-  font-weight: light;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
+/* Search & Select Controls */
 .search-select {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  text-align: center;
+  padding: 15px;
   gap: 10px;
   background-color: #706b6b;
+  text-align: center;
 }
 
 label {
   font-size: 1em;
 }
 
-#search-box {
-  margin: 15px;
-  border: none;
-  outline: none;
+#search-box,
+#clear-selection,
+#episode-selector,
+#tv-show-selector {
   font-size: 1em;
   padding: 10px;
   border-radius: 5px;
-  width: 130px;
-  height: 20px;
+  width: 100%;
+  max-width: 260px;
+  height: 40px;
+  margin: 5px;
 }
 
 #clear-selection {
-  margin: 15px;
-  border: none;
-  outline: none;
-  font-size: 1em;
-  padding: 10px;
-  border-radius: 5px;
-  width: 130px;
-  height: 40px;
   cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #444;
 }
 
 #clear-selection:hover {
@@ -77,42 +88,43 @@ label {
   color: #fff;
 }
 
-#episode-selector,
-#tv-show-selector {
-  font-size: 1em;
-  margin: 5px;
-  padding: 10px;
-  border-radius: 5px;
-  width: 260px;
-  height: 40px;
-}
-
+/* Grid Layout for Episode Cards */
 #root {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  padding: 15px;
   justify-content: center;
 }
 
+/* Episode Card Styles */
 section {
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 16px;
-  width: 200px;
+  width: 100%;
+  max-width: 250px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #c5c2c1;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+section:hover {
+  transform: scale(1.02);
 }
 
 section img {
-  width: 200px;
+  width: 100%;
+  max-width: 220px;
   border-radius: 8px;
 }
 
+/* Typography */
 h3 {
   margin-top: 0;
   color: rgb(87, 81, 81);
-  font-size: 14px;
+  font-size: 16px;
 }
 
 p,
@@ -126,6 +138,7 @@ data {
   margin: 8px 0;
 }
 
+/* Footer */
 footer {
   text-align: center;
   padding: 10px;
@@ -138,8 +151,61 @@ footer a {
   text-decoration: underline;
 }
 
+/* Error Message */
 .error {
   color: red;
   font-weight: bold;
   text-align: center;
+}
+
+/* Tablet Responsive */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 36px;
+  }
+
+  #hero-tag {
+    font-size: 16px;
+  }
+
+  nav a {
+    display: block;
+    margin: 5px auto;
+    font-size: 16px;
+    padding: 12px;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+  .search-select {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  #search-box,
+  #clear-selection,
+  #episode-selector,
+  #tv-show-selector {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  h3 {
+    font-size: 14px;
+  }
+
+  p,
+  time {
+    font-size: 11px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  #hero-tag {
+    font-size: 14px;
+  }
 }

@@ -1,3 +1,4 @@
+/* Base Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,6 +7,7 @@ body {
     background: linear-gradient(to right, #a29f9f, #ada59f);
 }
 
+/* Hero Section */
 #hero {
     text-align: center;
     background-color: #333;
@@ -14,21 +16,33 @@ body {
 }
 
 h1 {
-    font-size: 72px;
+    font-size: 60px;
+    margin: 0;
 }
 
 #hero-tag {
     font-size: 20px;
-    font-weight: light;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Responsive Hero Section */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 36px;
+    }
+
+    #hero-tag {
+        font-size: 16px;
+        padding: 0 10px;
+    }
+}
+
+/* Search Bar */
 .search-select {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 15px;
     text-align: center;
     gap: 10px;
     background-color: #706b6b;
@@ -39,82 +53,94 @@ label {
 }
 
 #show-search-box {
-    margin: 15px;
     border: none;
     outline: none;
     font-size: 1em;
     padding: 10px;
-    height: 25px;
-    width: 200px;
+    height: 40px;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 5px;
 }
 
+/* Show Listings */
 #shows-listing {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 20px;
-    padding: 20px;
-    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+    padding: 15px;
 }
 
+/* Cards */
 section {
-    position: relative;
     border: 1px solid #ccc;
     padding: 10px;
-    margin: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-color: #c5c2c1;
     transition: transform 0.3s, z-index 0.3s;
-    width: 80%;
+    width: 100%;
+    max-width: 300px;
+    margin: auto;
     overflow: hidden;
+    border-radius: 8px;
 }
 
 section:hover {
-    transform: scale(1.2);
+    transform: scale(1.05);
     z-index: 10;
 }
 
+/* Responsive Cards */
+@media (max-width: 768px) {
+    section {
+        max-width: 100%;
+    }
+}
+
+/* Card Content */
 .card-content {
     position: relative;
 }
 
 section img {
     width: 100%;
-
+    height: auto;
+    border-radius: 4px;
 }
 
+/* Details Section */
 .details {
     display: none;
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.75);
     color: #fff;
     padding: 10px;
+    font-size: 14px;
     text-align: left;
+    line-height: 1.4;
 }
 
 section:hover .details {
     display: block;
 }
 
+/* Typography */
 h3 {
-    margin-top: 0;
+    margin: 8px 0 0;
     color: rgb(237, 232, 232);
-    font-size: 14px;
+    font-size: 16px;
 }
 
 p,
 time {
-    margin: 8px 0;
-    font-size: 10px;
+    margin: 6px 0;
+    font-size: 13px;
 }
 
-section>h3 {
-    font-size: 12px;
-    color: #cfc8c8;
-}
-
+/* Footer */
 footer {
     text-align: center;
     padding: 10px;
@@ -127,27 +153,31 @@ footer a {
     text-decoration: underline;
 }
 
+/* Error Messages */
 .error {
     color: red;
     font-weight: bold;
     text-align: center;
 }
 
+/* Pagination */
 .pagination {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 20px 0;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .pagination button {
     background-color: #333;
     color: #fff;
     border: none;
-    padding: 10px 20px;
-    margin: 0 10px;
+    padding: 12px 20px;
     cursor: pointer;
     border-radius: 5px;
+    font-size: 1em;
 }
 
 .pagination button:hover {
@@ -155,5 +185,18 @@ footer a {
 }
 
 .pagination span {
-    font-size: 1.2em;
+    font-size: 1em;
 }
+
+/* Responsive Padding */
+@media (max-width: 480px) {
+    .search-select {
+        padding: 10px;
+    }
+
+    #shows-listing {
+        padding: 10px;
+    }
+
+    .pagination button {
+        padding:
