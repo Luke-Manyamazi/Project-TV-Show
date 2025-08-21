@@ -1,51 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TV Show Explorer - Front Page</title>
-    <link href="styles.css" rel="stylesheet" />
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-  </head>
-
-  <body>
-    <div id="hero">
-      <h1 id="hero-text">TV Show Explorer</h1>
-      <p id="hero-tag">Find and explore your favorite TV shows effortlessly.</p>
-    </div>
-    <div class="search-select">
-      <label for="show-search-box">Search Shows: </label>
-      <input type="text" id="show-search-box" />
-    </div>
-
-    <div id="shows-listing"></div>
-    <div class="pagination">
-      <button id="prev-page">&laquo; Previous</button>
-      <span id="page-info"></span>
-      <button id="next-page">Next &raquo;</button>
-    </div>
-    <footer>
-      <p>
-        TV Show data fetched from
-        <a href="https://www.tvmaze.com/" target="_blank">TVMaze.com</a>
-      </p>
-    </footer>
-    <template id="show-card">
-      <section>
-        <div class="card-content">
-          <img data-show-image src="" alt="Show Image" />
-          <div class="details">
-            <h3 data-show-title>Show Title</h3>
-            <p data-show-genres>Genres:</p>
-            <p data-show-status>Status:</p>
-            <p data-show-rating>Rating:</p>
-            <p data-show-runtime>Runtime:</p>
-          </div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TV Show Explorer - Front Page</title>
+        <link href="styles.css" rel="stylesheet">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    </head>
+    <body>
+        <div id="hero">
+            <h1 id="hero-text">TV Show Explorer</h1>
+            <p id="hero-tag">Find and explore your favorite TV shows effortlessly.</p>
         </div>
-      </section>
-    </template>
-
-    <!-- Loads YOUR javascript code -->
-    <script src="script.js"></script>
-  </body>
+        <div class="search-select">
+            <label for="show-search-box">Search Shows:</label>
+            <input type="text" id="show-search-box">
+        </div>
+        <div id="shows-listing"></div>
+        <div class="pagination">
+            <button id="prev-page">&laquo; Previous</button>
+            <span id="page-info"></span>
+            <button id="next-page">Next &raquo;</button>
+        </div>
+        <template id="show-card">
+            <section>
+                <div class="card-content">
+                    <img data-show-image src="" alt="Show Image">
+                    <div class="details">
+                        <h3 data-show-title>Show Title</h3>
+                        <p data-show-genres>Genres:</p>
+                        <p data-show-status>Status:</p>
+                        <p data-show-rating>Rating:</p>
+                        <p data-show-runtime>Runtime:</p>
+                    </div>
+                </div>
+            </section>
+        </template>
+        <!-- Loads YOUR javascript code -->
+        <script src="script.js"></script>
+    </body>
+    <footer>
+        <p>
+            TV Show data fetched from
+            <a href="https://www.tvmaze.com/" target="_blank">TVMaze.com</a>
+        </p>
+    </footer>
 </html>
